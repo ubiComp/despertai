@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/home_background"
+    android:weightSum="5" >
+    
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:layout_weight="3" >
+    
+	    <!--DigitalClock
+	        android:id="@+id/digitalClock1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="DigitalClock"
+	        android:textSize="60sp"
+	        android:textColor="#ffffff" /-->
+	    
+	    <TextClock
+		    android:id="@+id/hk_time"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:timeZone="GMT+0800"
+		    android:format24Hour="kk:mm"
+		    android:format12Hour="@null"
+		    android:textSize="110sp"
+		    android:textColor="#ffffff" />
+	    
+    </LinearLayout>
+    
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:orientation="horizontal"
+		android:gravity="center_horizontal"
+		android:layout_weight="1" >
+      
+      <ImageButton
+	      android:id="@+id/button_alarm_list"
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent"
+	      android:adjustViewBounds="true"
+	      android:scaleType="fitCenter"
+	      android:src="@drawable/alarm_list_button" />
+      <ImageButton
+	      android:id="@+id/button_weather"
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent"
+	      android:adjustViewBounds="true"
+	      android:scaleType="fitCenter"
+	      android:src="@drawable/weather_button" />
+      <ImageButton
+	      android:id="@+id/button_settings"
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent"
+	      android:adjustViewBounds="true"
+	      android:scaleType="fitCenter"
+	      android:src="@drawable/settings_button" />
+  </LinearLayout>
+  
+  
+</LinearLayout>
