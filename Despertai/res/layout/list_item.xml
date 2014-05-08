@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_itemview"
+    android:orientation='horizontal'
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp" >
+    
+    <TextView
+		android:id='@+id/hour_item'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="36sp"
+        android:textColor="#ffffff" />
+    
+    <TextView
+		android:id='@+id/title_item'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teste"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
+        android:paddingLeft="20dp" />
+    
+    <Switch
+        android:id="@+id/switch_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="200dp"
+        android:text=""
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+    
+</LinearLayout>
