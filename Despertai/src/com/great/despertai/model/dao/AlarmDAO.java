@@ -1,7 +1,9 @@
-package com.example.despertai;
+package com.great.despertai.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.great.despertai.model.vo.Alarm;
 
 import android.content.ContentValues;
 import android.content.Context;

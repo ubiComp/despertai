@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.despertai.HomeActivity"
+            android:name="com.great.despertai.view.HomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -24,12 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.despertai.AlarmListActivity"
+            android:name="com.great.despertai.view.AlarmListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.despertai.AlarmSettingsActivity"
+            android:name="com.great.despertai.view.AlarmSettingsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

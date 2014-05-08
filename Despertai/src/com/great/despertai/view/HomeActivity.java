@@ -1,6 +1,4 @@
-package com.example.despertai;
-
-import java.io.Serializable;
+package com.great.despertai.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,12 +9,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
+import com.example.despertai.R;
+
 //@SuppressWarnings("deprecation")
 public class HomeActivity extends Activity implements OnClickListener {
 
 	private ImageButton alarmListButton, weatherButton, settingsButton;
 //	private DigitalClock digitalClock;
-//	protected int alarmIdCount;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +33,6 @@ public class HomeActivity extends Activity implements OnClickListener {
 //		digitalClock.setTypeface(Typeface.createFromAsset(getAssets(), "MonoSpatial.ttf"));
 //		digitalClock.setText("Cris");
 //		digitalClock.setText(formatted);
-		
-//		alarmIdCount = 1;
 		
 		alarmListButton = (ImageButton) findViewById(R.id.button_alarm_list);
 		weatherButton = (ImageButton) findViewById(R.id.button_weather);
@@ -67,22 +64,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 	private void actionListenerAlarmListButton() {
 		Intent intent = new Intent(HomeActivity.this, AlarmListActivity.class);
 		startActivity(intent);
-		
-//		Intent intent = new Intent(HomeActivity.this, AlarmListActivity.class);
-//		Bundle bundle = new Bundle();
-//
-//		bundle.putInt("alarmIdCount", alarmIdCount);
-//
-//		intent.putExtras(bundle);
-//		startActivityForResult(intent, 1);
 	}
-	
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		super.onActivityResult(requestCode, resultCode, data);
-//		
-//		this.alarmIdCount = (int) data.getExtras().getInt("alarmIdCount");
-//	}
 	
 	private void actionListenerWeatherButton() {
 	}

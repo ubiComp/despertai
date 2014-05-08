@@ -1,4 +1,4 @@
-package com.example.despertai;
+package com.great.despertai.model.dao;
 
 import java.io.File;
 import java.io.FileOutputStream;

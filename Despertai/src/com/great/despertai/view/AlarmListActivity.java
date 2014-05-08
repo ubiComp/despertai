@@ -1,8 +1,15 @@
-package com.example.despertai;
+package com.great.despertai.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.despertai.R;
+import com.example.despertai.R.id;
+import com.example.despertai.R.layout;
+import com.great.despertai.adapter.ListViewAdapter;
+import com.great.despertai.model.dao.AlarmDAO;
+import com.great.despertai.model.vo.Alarm;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -32,7 +39,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	private Alarm alarmToConfigure;
 	private int alarmPosition;
 	private boolean isNewAlarmOption;
-//	private int alarmIdCount;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +49,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 //				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.alarm_list_layout);
-		
-//		this.alarmIdCount = (int) getIntent().getExtras().getInt("alarmIdCount");
 		
 		isNewAlarmOption = false;
 		alarmList = new ArrayList<Alarm>();

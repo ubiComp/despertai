@@ -1,4 +1,4 @@
-package com.example.despertai;
+package com.great.despertai.model.vo;
 
 public class ListViewItem {
 	protected String hour;
