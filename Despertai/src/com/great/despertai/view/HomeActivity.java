@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-import com.example.despertai.R;
+import com.great.despertai.R;
 
 //@SuppressWarnings("deprecation")
 public class HomeActivity extends Activity implements OnClickListener {

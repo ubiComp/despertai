@@ -2,8 +2,8 @@ package com.great.despertai.adapter;
 
 import java.util.List;
 
-import com.example.despertai.R;
-import com.example.despertai.R.id;
+import com.great.despertai.R;
+import com.great.despertai.R.id;
 import com.great.despertai.model.vo.Alarm;
 
 import android.content.Context;

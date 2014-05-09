@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.despertai.R;
-import com.example.despertai.R.id;
-import com.example.despertai.R.layout;
+import com.great.despertai.R;
+import com.great.despertai.R.id;
+import com.great.despertai.R.layout;
 import com.great.despertai.adapter.ListViewAdapter;
 import com.great.despertai.model.dao.AlarmDAO;
 import com.great.despertai.model.vo.Alarm;
@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -39,6 +40,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	private Alarm alarmToConfigure;
 	private int alarmPosition;
 	private boolean isNewAlarmOption;
+	private int alarmIdCount;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 		dao = (new AlarmDAO(this));
 		
 		alarmList = dao.searchAlarmList();
+		alarmIdCount = dao.getBiggestAlarmId();
 		
 		adapter = new ListViewAdapter(this, R.layout.list_item, alarmList);
 		listview.setAdapter(adapter);
@@ -84,7 +87,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	
 	private void actionListenerAddAlarmButton() {
 		isNewAlarmOption = true;
-		alarmToConfigure = new Alarm("Default", "00:00");
+		alarmToConfigure = new Alarm(alarmIdCount + 1, "Default", "00:00");
 		configureAlarm(alarmToConfigure);
 	}
 	
@@ -135,6 +138,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 		}
 		
 		alarmPosition = -1;
+//		data.set
 	}
 	
 	private void saveOption(Alarm alarm) {

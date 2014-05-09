@@ -3,14 +3,14 @@ package com.great.despertai.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.great.despertai.model.vo.Alarm;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.great.despertai.model.vo.Alarm;
 
 public class AlarmDAO {
 	
@@ -64,6 +64,35 @@ public class AlarmDAO {
 		close();
 		
 		Log.i(BaseDAO.DB_LOG, "[" + id + "] record was inserted.");
+	}
+	
+	public int getBiggestAlarmId() {
+		int idFound = -1;
+		
+		String sql = "SELECT max(" + BaseDAO.ALARM_ID + ") " 
+				+ "FROM " + BaseDAO.ALARM_TABLE_NAME + ";";
+		
+		open();
+		
+		Cursor c = db.rawQuery(sql, null);
+		
+		try {
+			if (c.getCount() > 0) {
+				c.moveToFirst();
+				idFound = c.getInt(0);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		
+//		c.close();
+//		close();
+		
+		Log.i(BaseDAO.DB_LOG, "[" + idFound + "] id found as the biggest.");
+
+		return idFound;
 	}
 	
 	public void search(int id) {

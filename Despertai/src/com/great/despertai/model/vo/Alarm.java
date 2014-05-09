@@ -17,7 +17,8 @@ public class Alarm implements Serializable {
 	protected boolean hasReminder;
 	protected boolean hasSnooze;
 	
-	public Alarm(String title, String hour) {
+	public Alarm(int id, String title, String hour) {
+		this.id = id;
 		this.title = title;
 		this.hour = hour;
 	}
