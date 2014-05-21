@@ -30,7 +30,7 @@
 		    android:format12Hour="@null"
 		    android:textSize="110sp"
 		    android:textColor="#ffffff" />
-	    
+	     
     </LinearLayout>
     
 	<LinearLayout

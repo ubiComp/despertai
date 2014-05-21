@@ -70,8 +70,8 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 	
 	private void actionListenerSettingsButton() {
-//		Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-//		startActivity(intent);
+		Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+		startActivity(intent);
 	}
 
 }
