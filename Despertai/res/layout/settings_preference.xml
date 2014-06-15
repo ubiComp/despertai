@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <PreferenceCategory android:key="geral"
-         android:title="Geral"
-         >
-      
-  
-         
-  <EditTextPreference  android:key="nome"
-           android:dialogTitle="Nome"
-           android:dialogMessage="Digite o Nome do Alarme"
-           android:summary="Nome do Alarme"
-           android:title="Nome"
-           android:defaultValue="Nome do alarme"
-           android:textColor="#ffffff"/>
-  
-  <RingtonePreference android:key="som"
-                android:ringtoneType="all"
-                android:title="Som"
-                android:textColor="#ffffff"/>
-  <Preference android:key="volume"
-           android:title="Volume"
-           android:textColor="#ffffff"      
-      />
-  <CheckBoxPreference android:key="lembrete"
-                android:title="Lembrete"
-                android:defaultValue="true" 
-                android:textColor="#ffffff"
-      
-      />
-  <EditTextPreference  android:key="soneca"
-           android:dialogTitle="Soneca"
-           android:dialogMessage="Digite o tempo de Soneca do Alarme"
-           android:summary="Tempo de Soneca"
-           android:title="Soneca"
-           android:defaultValue="8 minutos"
-           android:textColor="#ffffff"/>
- 
-</PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="geral"
+        android:title="Geral" >
+
+        <EditTextPreference
+            android:defaultValue="Nome do alarme"
+            android:dialogMessage="Digite o Nome do Alarme"
+            android:dialogTitle="Nome"
+            android:key="nome"
+            android:summary="Nome do Alarme"
+            android:textColor="#ffffff"
+            android:title="Nome" />
+
+        <RingtonePreference
+            android:key="som"
+            android:ringtoneType="all"
+            android:textColor="#ffffff"
+            android:title="Som" />
+
+        <Preference
+            android:key="volume"
+            android:textColor="#ffffff"
+            android:title="Volume" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="lembrete"
+            android:textColor="#ffffff"
+            android:title="Lembrete" />
+
+        <EditTextPreference
+            android:defaultValue="8 minutos"
+            android:dialogMessage="Digite o tempo de Soneca do Alarme"
+            android:dialogTitle="Soneca"
+            android:key="soneca"
+            android:summary="Tempo de Soneca"
+            android:textColor="#ffffff"
+            android:title="Soneca" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

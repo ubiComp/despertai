@@ -1,9 +1,9 @@
 package com.great.despertai.adapter;
 
-import com.great.despertai.R;
 import android.os.Bundle;
-import android.preference.*;
-import android.view.View;
+import android.preference.PreferenceFragment;
+
+import com.great.despertai.R;
 
 
 public class SettingsPrefAdapter extends PreferenceFragment  {

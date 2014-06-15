@@ -1,5 +1,6 @@
 package com.great.despertai.view;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +8,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.great.despertai.R;
+
 
 //@SuppressWarnings("deprecation")
 public class HomeActivity extends Activity implements OnClickListener {
 
-	private ImageButton alarmListButton, weatherButton, settingsButton;
+	private ImageView alarmListButton, weatherButton, settingsButton;
 //	private DigitalClock digitalClock;
 	
 	@Override
@@ -28,15 +30,15 @@ public class HomeActivity extends Activity implements OnClickListener {
 		
 //		DateFormat format = new SimpleDateFormat("HH:mm a");
 //		String formatted = format.format(new Date());
-		
-//		digitalClock = (DigitalClock)findViewById(R.id.digitalClock1);
+//		
+//		digitalClock = (DigitalClock)findViewById(R.id.digitalCloc);
 //		digitalClock.setTypeface(Typeface.createFromAsset(getAssets(), "MonoSpatial.ttf"));
-//		digitalClock.setText("Cris");
+//		digitalClock.setText("");
 //		digitalClock.setText(formatted);
-		
-		alarmListButton = (ImageButton) findViewById(R.id.button_alarm_list);
-		weatherButton = (ImageButton) findViewById(R.id.button_weather);
-		settingsButton = (ImageButton) findViewById(R.id.button_settings);
+//		
+		alarmListButton = (ImageView) findViewById(R.id.button_alarm_list);
+		weatherButton = (ImageView) findViewById(R.id.button_weather);
+		settingsButton = (ImageView) findViewById(R.id.button_settings);
 
 		alarmListButton.setOnClickListener(this);
 		weatherButton.setOnClickListener(this);
