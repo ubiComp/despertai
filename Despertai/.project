@@ -3,6 +3,7 @@
 	<name>Despertai</name>
 	<comment></comment>
 	<projects>
+		<project>SysSU_Android</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

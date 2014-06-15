@@ -1,39 +1,42 @@
 package com.great.despertai.loccam;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Toast;
 import br.ufc.great.syssu.base.Pattern;
 import br.ufc.great.syssu.base.Tuple;
 import br.ufc.great.syssu.base.interfaces.ISysSUService;
 
 public class SysSUClient {
-	private static final String TAG = "AIDLDemo";
-	private ISysSUService service;
 
+	private static final String TAG = "Loccam-Despertai";
+	private ISysSUService service;
 	private MyServiceConnection connection;
 	private Context context;
-
 	private String interesse;
+	private Location location;
 
 	public SysSUClient(Context context) {
 
 		this.context = context;
+		if (this.context == null)
+			Log.v(TAG, "problema");
 		initService();
 		interesse = new String("context.device.gpslocation");
-		put(interesse);
-
+		location = new Location(interesse);
 	}
 
 	class MyServiceConnection implements ServiceConnection {
@@ -62,17 +65,24 @@ public class SysSUClient {
 
 		// Tupla de interesse em dados
 		Tuple t = (Tuple) new Tuple().addField("AppId", "Despertai").addField(
-				"InterestElement", interesse);
+				"InterestElement", "context.device.gpslocation");
 
 		// Publica interesse
 		try {
 			service.put(t);
 			Log.i("Loccam-Despertai", "Interesse publicado");
+		} catch (NullPointerException e) {
+			Log.e("Loccam-Despertai", "Erro ao publicar interesse");
+			e.printStackTrace();
 		} catch (RemoteException e) {
 			Log.e("Loccam-Despertai", "Erro ao publicar interesse");
 			e.printStackTrace();
 		}
 
+	}
+
+	public void put() {
+		put(this.interesse);
 	}
 
 	public void stop(String interesse) {
@@ -89,6 +99,10 @@ public class SysSUClient {
 
 	}
 
+	public void stop() {
+		stop(this.interesse);
+	}
+
 	public String get(String interesse) {
 
 		String resultado;
@@ -98,72 +112,74 @@ public class SysSUClient {
 		// Lê interesse
 		try {
 			List<Tuple> tuples = service.read(p, null);
+
 			resultado = (tuples.size() > 0) ? generateString(tuples.get(0))
 					: "tuple.size() == 0";
-			Log.i("Loccam-Despertai", "Resultado: "+resultado);
+
+			setLocation(tuples.size() > 0 ? ""
+					+ tuples.get(0).getField(2).getValue() : " ");
+			Log.i("Loccam-Despertai", "Resultado Loccam: " + resultado);
 		} catch (RemoteException e) {
 			Log.e("Loccam-Despertai", "Erro ao ler informação");
 			e.printStackTrace();
 			resultado = null;
 		}
-		
+
 		return resultado;
 	}
 
-	public static String generateString(List<Tuple> tuples) {
-		String r = "";
-
-		if (tuples != null && !tuples.isEmpty()) {
-			for (Tuple tuple : tuples) {
-				r += generateString(tuple) + "\n\n";
-			}
-
-			r = r.substring(0, r.length() - 2);
-		} else {
-			r = "NULL";
-		}
-
-		return r;
+	public String get() {
+		return get(this.interesse);
 	}
 
-	public static String generateString(Tuple tuple) {
+	private static String generateString(Tuple tuple) {
 		String r = "{\n";
 		for (int i = 0; i < tuple.size(); i++) {
 			r += "(" + tuple.getField(i).getName() + ","
 					+ tuple.getField(i).getValue() + "),\n";
 		}
-		Log.v("lana", "TupleSize: " + tuple.size());
+		Log.v(TAG, "TupleSize: " + tuple.size());
 		r = r.substring(0, r.length() - 2) + "\n}";
 		return r;
 	}
 
-	public void leGPS(Context context) {
-		// Acquire a reference to the system Location Manager
-		LocationManager locationManager = (LocationManager) context
-				.getSystemService(Context.LOCATION_SERVICE);
+	private void setLocation(String string) {
 
-		// Define a listener that responds to location updates
-		LocationListener locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
-				// Called when a new location is found by the network location
-				Log.i("Loccam-Despertai", "GPS: " + location.getLatitude()
-						+ location.getLongitude() + "\n");
-			}
+		String[] s = string.split(",");
+		s[0] = s[0].replace("[", " ").trim();
+		s[1] = s[1].trim();
+		s[3] = s[0].replace("]", " ").trim();
 
-			public void onStatusChanged(String provider, int status,
-					Bundle extras) {
-			}
-
-			public void onProviderEnabled(String provider) {
-			}
-
-			public void onProviderDisabled(String provider) {
-			}
-		};
-
-		// Register the listener with the Location Manager to receive location
-		// updates
-		locationManager.requestLocationUpdates(
-				LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+		Log.v(TAG, "Latitude: " + s[0] + " Longitude: " + s[1]);
+		Log.v(TAG, "Altitude: " + s[2] + " Accuracy: " + s[3]);
+		location.setLatitude(Double.parseDouble(s[0]));
+		location.setLongitude(Double.parseDouble(s[1]));
+		location.setAltitude(Double.parseDouble(s[2]));
+		location.setAccuracy(Float.parseFloat(s[3]));
 	}
+
+	public Location getLocation() {
+		return this.location;
+	}
+
+	public String getCity() {
+		Geocoder gcd = new Geocoder(context, Locale.ENGLISH);
+		String city = new String();
+		try {
+			List<Address> addresses = gcd.getFromLocation(location.getLatitude(),
+					location.getLongitude(), 1);
+			if (addresses != null) {
+				Log.v(TAG, "Cidade:" + addresses.get(0).getAddressLine(1));
+				Toast.makeText(context, "Cidade:"
+						+ addresses.get(0).getAddressLine(1), Toast.LENGTH_LONG).show();
+				city = addresses.get(0).getAddressLine(1);
+			}
+		} catch (IOException e) {
+			Log.e(TAG, "Problema para definir a cidade");
+			e.printStackTrace();
+			city = "";
+		}
+		return city;
+	}
+
 }

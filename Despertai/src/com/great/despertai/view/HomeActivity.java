@@ -1,24 +1,26 @@
 package com.great.despertai.view;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.great.despertai.R;
-
+import com.great.despertai.loccam.*;
 
 //@SuppressWarnings("deprecation")
 public class HomeActivity extends Activity implements OnClickListener {
 
 	private ImageView alarmListButton, weatherButton, settingsButton;
-//	private DigitalClock digitalClock;
-	
+	// private DigitalClock digitalClock;
+	SysSUClient client;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,15 +29,16 @@ public class HomeActivity extends Activity implements OnClickListener {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.home_layout);
-		
-//		DateFormat format = new SimpleDateFormat("HH:mm a");
-//		String formatted = format.format(new Date());
-//		
-//		digitalClock = (DigitalClock)findViewById(R.id.digitalCloc);
-//		digitalClock.setTypeface(Typeface.createFromAsset(getAssets(), "MonoSpatial.ttf"));
-//		digitalClock.setText("");
-//		digitalClock.setText(formatted);
-//		
+
+		// DateFormat format = new SimpleDateFormat("HH:mm a");
+		// String formatted = format.format(new Date());
+		//
+		// digitalClock = (DigitalClock)findViewById(R.id.digitalCloc);
+		// digitalClock.setTypeface(Typeface.createFromAsset(getAssets(),
+		// "MonoSpatial.ttf"));
+		// digitalClock.setText("");
+		// digitalClock.setText(formatted);
+		//
 		alarmListButton = (ImageView) findViewById(R.id.button_alarm_list);
 		weatherButton = (ImageView) findViewById(R.id.button_weather);
 		settingsButton = (ImageView) findViewById(R.id.button_settings);
@@ -43,6 +46,19 @@ public class HomeActivity extends Activity implements OnClickListener {
 		alarmListButton.setOnClickListener(this);
 		weatherButton.setOnClickListener(this);
 		settingsButton.setOnClickListener(this);
+
+		client = new SysSUClient(this);
+
+		// o Loccam precisa de tempo para iniciar
+		// o put é realizado 1segundo após sua inicialização
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				client.put();
+			}
+		}, 1000);
 
 	}
 
@@ -63,17 +79,22 @@ public class HomeActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
+
 	private void actionListenerAlarmListButton() {
 		Intent intent = new Intent(HomeActivity.this, AlarmListActivity.class);
 		startActivity(intent);
 	}
-	
+
 	private void actionListenerWeatherButton() {
+
+		Toast.makeText(this, client.get(), Toast.LENGTH_LONG).show();
+		client.getCity();
 	}
-	
+
 	private void actionListenerSettingsButton() {
 		Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
 		startActivity(intent);
+
 	}
 
 }
