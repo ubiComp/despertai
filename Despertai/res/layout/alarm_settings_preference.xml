@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="@string/alarmsettings_alarm_settings_key"
+        android:title="@string/alarmsettings_title" >
+
+        <EditTextPreference
+            android:defaultValue="@string/alarmsettings_name_default"
+            android:key="@string/alarmsettings_name_key"
+            android:summary="@string/alarmsettings_name_summary"
+            android:textColor="@color/white"
+            android:title="@string/alarmsettings_name_option" />
+
+        <RingtonePreference
+            android:key="@string/alarmsettings_sound_key"
+            android:ringtoneType="all"
+            android:summary="@string/alarmsettings_sound_summary"
+            android:textColor="@color/white"
+            android:title="@string/alarmsettings_sound_option" />
+
+        <SeekBarPreference
+            android:key="@string/alarmsettings_volume_key"
+            android:textColor="@color/white"
+            android:title="@string/alarmsettings_volume_option" />
+
+        <ListPreference
+            android:entries="@array/alarmsettings_snooze_entries"
+            android:entryValues="@array/alarmsettings_snooze_values"
+            android:key="@string/alarmsettings_snooze_key"
+            android:summary="@string/alarmsettings_snooze_summary"
+            android:title="@string/alarmsettings_snooze_option" />
+
+        <ListPreference
+            android:entries="@array/alarmsettings_shutdown_mode_entries"
+            android:entryValues="@array/alarmsettings_shutdown_mode_values"
+            android:key="@string/alarmsettings_shutdown_mode_key"
+            android:summary="@string/alarmsettings_shutdown_mode_summary"
+            android:title="@string/alarmsettings_shutdown_mode_option" />
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

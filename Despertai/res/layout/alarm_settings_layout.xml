@@ -1,56 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#000000"
-    android:weightSum="5" >
-    
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:orientation="horizontal"
-		android:gravity="right"
-		android:layout_weight="1" >
-      
-      <ImageButton
-	      android:id="@+id/button_save"
-	      android:layout_width="wrap_content"
-	      android:layout_height="80dp"
-	      android:adjustViewBounds="true"
-	      android:scaleType="fitCenter"
-	      android:src="@drawable/action_save_button" />
-      <ImageButton
-	      android:id="@+id/button_cancel"
-	      android:layout_width="wrap_content"
-	      android:layout_height="80dp"
-	      android:adjustViewBounds="true"
-	      android:scaleType="fitCenter"
-	      android:src="@drawable/action_cancel_button" />
-      <ImageButton
-	      android:id="@+id/button_remove"
-	      android:layout_width="wrap_content"
-	      android:layout_height="80dp"
-	      android:adjustViewBounds="true"
-	      android:scaleType="fitCenter"
-	      android:src="@drawable/action_discard_button" />
-	</LinearLayout>
-  
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:orientation="horizontal"
-		android:gravity="center_horizontal"
-		android:layout_weight="1" >
-      
-      <!--ImageButton
-	      android:id="@+id/button_alarm_list"
-	      android:layout_width="wrap_content"
-	      android:layout_height="match_parent"
-	      android:adjustViewBounds="true"
-	      android:scaleType="fitCenter"
-	      android:src="@drawable/alarm_list_button" /-->
-  </LinearLayout>
-  
-  
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="vertical" >
+
+        <TimePicker
+            android:id="@+id/alarmsettings_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_monday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_monday"
+                android:textOn="@string/alarmsettings_monday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_tuesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_tuesday"
+                android:textOn="@string/alarmsettings_tuesday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_wednesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_wednesday"
+                android:textOn="@string/alarmsettings_wednesday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_thursday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_thursday"
+                android:textOn="@string/alarmsettings_thursday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_friday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_friday"
+                android:textOn="@string/alarmsettings_friday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_saturday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_saturday"
+                android:textOn="@string/alarmsettings_saturday" />
+
+            <ToggleButton
+                android:id="@+id/alarmsettings_tb_sunday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textOff="@string/alarmsettings_sunday"
+                android:textOn="@string/alarmsettings_sunday" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

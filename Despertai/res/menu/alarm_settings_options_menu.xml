@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/alarmsttings_optmenu_save"
+        android:icon="@drawable/action_save_button"
+        android:showAsAction="ifRoom"
+        android:title="@string/alarmsettings_save_option"/>
+    <item
+        android:id="@+id/alarmsttings_optmenu_cancel"
+        android:icon="@drawable/action_cancel_button"
+        android:showAsAction="ifRoom"
+        android:title="@string/alarmsettings_cancel_option"/>
+    <item
+        android:id="@+id/alarmsttings_optmenu_remove"
+        android:icon="@drawable/action_discard_button"
+        android:showAsAction="ifRoom"
+        android:title="@string/alarmsettings_remove_option"/>
+
+</menu>

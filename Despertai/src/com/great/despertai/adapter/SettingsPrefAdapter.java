@@ -14,7 +14,7 @@ public class SettingsPrefAdapter extends PreferenceFragment  {
 public void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
 	super.onCreate(savedInstanceState);
-	addPreferencesFromResource(R.layout.settings_preference);
+	addPreferencesFromResource(R.layout.alarm_settings_preference);
 }
     
     

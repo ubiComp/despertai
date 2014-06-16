@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="alarmsettings_snooze_entries">
+        <item>3 minutos</item>
+        <item>5 minutos</item>
+        <item>10 minutos</item>
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_snooze_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_shutdown_mode_entries">
+        <item>Simples</item>
+        <item>Sinal sonoro</item>
+        <item>Localização</item>
+        <item>Movimento</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_shutdown_mode_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+</resources>

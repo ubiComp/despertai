@@ -11,7 +11,7 @@ public class SettingsActivity extends FragmentActivity    {
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.settings_layout);
+			setContentView(R.layout.alarm_settings_layout);
 			//SettigsDate fragment1 = new SettigsDate();		
 			SettingsPrefAdapter fragment2 = new SettingsPrefAdapter();
 			//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
