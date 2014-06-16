@@ -6,28 +6,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.great.despertai.R;
-import com.great.despertai.loccam.*;
+import com.great.despertai.loccam.SysSUClient;
+import com.great.despertai.util.Weather;
 
 //@SuppressWarnings("deprecation")
 public class HomeActivity extends Activity implements OnClickListener {
 
+	// private static final String TAG = "Home-Despertai";
 	private ImageView alarmListButton, weatherButton, settingsButton;
 	// private DigitalClock digitalClock;
 	SysSUClient client;
+	private Weather weather;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.home_layout);
 
 		// DateFormat format = new SimpleDateFormat("HH:mm a");
@@ -39,6 +37,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		// digitalClock.setText("");
 		// digitalClock.setText(formatted);
 		//
+
 		alarmListButton = (ImageView) findViewById(R.id.button_alarm_list);
 		weatherButton = (ImageView) findViewById(R.id.button_weather);
 		settingsButton = (ImageView) findViewById(R.id.button_settings);
@@ -86,9 +85,16 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	private void actionListenerWeatherButton() {
-
-		Toast.makeText(this, client.get(), Toast.LENGTH_LONG).show();
 		client.getCity();
+
+		String textWeather = weather.getAtributo(Weather.DIA) + "\n"
+				+ weather.getAtributo(Weather.TEMPO)
+				+ weather.getAtributo(Weather.CIDADE)
+				+ weather.getAtributo(Weather.MAX_TEMPERATURA)
+				+ weather.getAtributo(Weather.MIN_TEMPERATURA);
+		Toast.makeText(this, textWeather, Toast.LENGTH_LONG).show();
+		weather.speechWeather();
+
 	}
 
 	private void actionListenerSettingsButton() {

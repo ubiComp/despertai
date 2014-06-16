@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/home_background"
     android:orientation="vertical"
-    android:weightSum="5" >
+    android:weightSum="6" >
 
     <!--
              <DigitalClock
@@ -12,23 +12,25 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="DigitalClock"
-	        android:textSize="60sp"
-	        android:textColor="#ffffff" />
+	        android:textSize="60sp"/>
     -->
 
     <TextClock
         android:id="@+id/hk_time"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="3.5"
         android:format12Hour="kk:mm"
         android:format24Hour="kk:mm"
-        android:layout_gravity="center_horizontal"
         android:gravity="bottom"
-        android:paddingBottom="20sp"
         android:textColor="#ffffff"
-        android:textSize="85sp"
-        android:timeZone="GMT+0800" />
+        android:textSize="85sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,21 +41,21 @@
 
         <ImageView
             android:id="@+id/button_alarm_list"
-            android:contentDescription="@string/image_description"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
             android:layout_marginRight="20sp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_description"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_alarm_list" />
-
+1.5
         <ImageView
-            android:contentDescription="@string/image_description"
-            android:layout_marginRight="20sp"
             android:id="@+id/button_weather"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginRight="20sp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/image_description"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_weather" />
 
@@ -61,12 +63,10 @@
             android:id="@+id/button_settings"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="20sp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/image_description"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_settings" />
-
     </LinearLayout>
 
 </LinearLayout>

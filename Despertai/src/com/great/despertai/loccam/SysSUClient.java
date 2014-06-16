@@ -166,16 +166,35 @@ public class SysSUClient {
 		Geocoder gcd = new Geocoder(context, Locale.ENGLISH);
 		String city = new String();
 		try {
-			List<Address> addresses = gcd.getFromLocation(location.getLatitude(),
-					location.getLongitude(), 1);
+			Log.v(TAG, "Localização: "+location.getLatitude()+ location.getLongitude());
+			List<Address> addresses = gcd.getFromLocation(
+					location.getLatitude(), location.getLongitude(), 1);
 			if (addresses != null) {
-				Log.v(TAG, "Cidade:" + addresses.get(0).getAddressLine(1));
-				Toast.makeText(context, "Cidade:"
-						+ addresses.get(0).getAddressLine(1), Toast.LENGTH_LONG).show();
-				city = addresses.get(0).getAddressLine(1);
+				Log.v(TAG, "Cidade:" + addresses.get(0).toString());
+				// Toast.makeText(context,
+				// "Cidade:" + addresses.get(0).getAddressLine(1),
+				// Toast.LENGTH_LONG).show();
+				// city = addresses.get(0).getAddressLine(1);
+				// Log.v(TAG, "Cidade:" + addresses.get(0).getSubAdminArea());
+				// Toast.makeText(context, "Cidade:"
+				// + addresses.get(0).getSubAdminArea(),
+				// Toast.LENGTH_LONG).show();
+				// city = addresses.get(0).getSubAdminArea();
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "Problema para definir a cidade");
+			Toast.makeText(
+					context,
+					"Problema para verificar sua localização. Verifique sua conexão!",
+					Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+			city = "";
+		} catch (IndexOutOfBoundsException e) {
+			Log.e(TAG, "Problema para definir a cidade");
+			Toast.makeText(
+					context,
+					"Problema para verificar sua localização. Verifique sua conexão!",
+					Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 			city = "";
 		}
