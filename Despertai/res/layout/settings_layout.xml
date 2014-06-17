@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="@string/alarmsettings_alarm_settings_key"
+        android:title="@string/settings_title" >
+
+      
+        <ListPreference
+            android:entries="@array/settings_time_zone_entries"
+            android:entryValues="@array/settings_time_zone_values"
+            android:key="@string/settings_time_zone"
+            android:summary="@string/settings_time_zone_summary"
+            android:title="@string/settings_time_zone_option" />
+       
+        <ListPreference
+            android:entries="@array/settings_temperature_unit_entries"
+            android:entryValues="@array/settings_temperature_unit_values"
+            android:key="@string/settings_temperature_unit"
+            android:summary="@string/settings_temperature_unit_summary"
+            android:title="@string/settings_temperature_unit_option" />
+        
+        <ListPreference
+            android:entries="@array/settings_language_entries"
+            android:entryValues="@array/settings_language_values"
+            android:key="@string/settings_language"
+            android:summary="@string/settings_language_summary"
+            android:title="@string/settings_language_option" />
+        
+        <ListPreference
+            android:entries="@array/settings_time_format_entries"
+            android:entryValues="@array/settings_time_format_values"
+            android:key="@string/settings_time_format"
+            android:summary="@string/settings_time_format_summary"
+            android:title="@string/settings_time_format_option" />
+        
+        <ListPreference
+            android:entries="@array/settings_clock_format_entries"
+            android:entryValues="@array/settings_clock_format_values"
+            android:key="@string/settings_clock_format"
+            android:summary="@string/settings_clock_format_summary"
+            android:title="@string/settings_clock_format_option" />
+        
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,22 +1,19 @@
 package com.great.despertai.view;
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.v4.app.FragmentActivity;
 
 import com.great.despertai.adapter.SettingsPrefAdapter;
 import com.great.despertai.R;
 
-public class SettingsActivity extends FragmentActivity    {
+public class SettingsActivity extends PreferenceActivity    {
 
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.alarm_settings_layout);
-			//SettigsDate fragment1 = new SettigsDate();		
-			SettingsPrefAdapter fragment2 = new SettingsPrefAdapter();
-			//FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			//transaction.add(R.id.content, fragment1).commit();
-			getFragmentManager().beginTransaction().replace(R.id.content, fragment2).commit();
+			addPreferencesFromResource(R.layout.settings_layout);
+
 			 
 			
 			

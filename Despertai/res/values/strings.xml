@@ -11,6 +11,7 @@
     
 	<!-- Alarm Settings Screen -->
     <string name="alarmsettings_title">Configurações de alarme</string>
+    <string name="settings_title">Configurações</string>
     
     <string name="alarmsettings_sunday">D</string>
     <string name="alarmsettings_monday">S</string>
@@ -43,8 +44,23 @@
     <string name="alarmsettings_cancel_option">Cancelar</string>
     <string name="alarmsettings_remove_option">Remover</string>
     
+    <string name="settings_time_zone">timezone</string>
+    <string name="settings_temperature_unit">temperatureunit</string>
+    <string name="settings_language">language</string>
+    <string name="settings_time_format">timeformat</string>
+    <string name="settings_clock_format">clockformat</string>
     
+    <string name="settings_time_zone_summary">Escolher o fuso</string>
+    <string name="settings_temperature_unit_summary">Escolher a unidade</string>
+    <string name="settings_language_summary">Escolher o idioma</string>
+    <string name="settings_time_format_summary">Escolher o formato</string>
+    <string name="settings_clock_format_summary">Escolher o formato</string>
     
+    <string name="settings_time_zone_option">Fuso Horário</string>    
+    <string name="settings_temperature_unit_option">Unidade de Temperatura</string>    
+    <string name="settings_language_option">Idioma</string>    
+    <string name="settings_time_format_option">Formato da Hora</string>    
+    <string name="settings_clock_format_option">Formato do Relógio</string>  
 
 </resources>
 
