@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Despertai</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="image_description">Image Despertai</string>
+    
+    <!-- Alarm List Screen -->
+    <string name="add_alarm">Add Alarm</string>
+    
+	<!-- Alarm Settings Screen -->
+    <string name="alarmsettings_title">Alarm Settings</string>
+    <string name="settings_title">Settings</string>
+    
+    <string name="alarmsettings_sunday">S</string>
+    <string name="alarmsettings_monday">M</string>
+    <string name="alarmsettings_tuesday">T</string>
+    <string name="alarmsettings_wednesday">W</string>
+    <string name="alarmsettings_thursday">T</string>
+    <string name="alarmsettings_friday">F</string>
+    <string name="alarmsettings_saturday">S</string>
+    
+    <string name="alarmsettings_name_option">Name</string>
+    <string name="alarmsettings_sound_option">Sound</string>
+    <string name="alarmsettings_volume_option">Volume</string>
+    <string name="alarmsettings_snooze_option">Snooze</string>
+    <string name="alarmsettings_shutdown_mode_option">Shutdown Mode</string>
+    
+    <string name="alarmsettings_alarm_settings_key">alarmsettings</string>
+    <string name="alarmsettings_name_key">name</string>
+    <string name="alarmsettings_sound_key">sound</string>
+    <string name="alarmsettings_volume_key">volume</string>
+    <string name="alarmsettings_snooze_key">snooze</string>
+    <string name="alarmsettings_shutdown_mode_key">shutdownmode</string>
+    
+    <string name="alarmsettings_name_default">Alarm</string>
+    <string name="alarmsettings_name_summary">Choose alarm name</string>
+    <string name="alarmsettings_sound_summary">Choose sound name</string>
+    <string name="alarmsettings_snooze_summary">Choose snooze time</string>
+    <string name="alarmsettings_shutdown_mode_summary">choose shutdown</string>
+    
+    <string name="alarmsettings_save_option">Save</string>
+    <string name="alarmsettings_cancel_option">Cancel</string>
+    <string name="alarmsettings_remove_option">Remove</string>
+    
+    <string name="settings_time_zone">timezone</string>
+    <string name="settings_temperature_unit">temperatureunit</string>
+    <string name="settings_language">language</string>
+    <string name="settings_time_format">timeformat</string>
+    <string name="settings_clock_format">clockformat</string>
+    
+    <string name="settings_time_zone_summary">Choose zone</string>
+    <string name="settings_temperature_unit_summary">Choose unit</string>
+    <string name="settings_language_summary">Choose language</string>
+    <string name="settings_time_format_summary">Choose format</string>
+    <string name="settings_clock_format_summary">Choose format</string>
+    
+    <string name="settings_time_zone_option">Time zone</string>    
+    <string name="settings_temperature_unit_option">Temperature Unit</string>    
+    <string name="settings_language_option">Language</string>    
+    <string name="settings_time_format_option">Time Format</string>    
+    <string name="settings_clock_format_option">Clock Format</string>  
+
+</resources>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="alarmsettings_snooze_entries">
+        <item>3 minutos</item>
+        <item>5 minutos</item>
+        <item>10 minutos</item>
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_snooze_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_shutdown_mode_entries">
+        <item>Simples</item>
+        <item>Sinal sonoro</item>
+        <item>Localização</item>
+        <item>Movimento</item>
+    </string-array>
+    
+    <string-array name="alarmsettings_shutdown_mode_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    
+   <string-array name="settings_time_zone_entries">
+        <item>Fernando de Noronha</item>
+        <item>Brasília</item>
+        <item>Rondônia</item>
+        <item>Acre</item>
+        
+    </string-array>
+    
+    <string-array name="settings_time_zone_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+       
+    </string-array>
+    
+       <string-array name="settings_temperature_unit_entries">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+    
+    <string-array name="settings_temperature_unit_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    
+   <string-array name="settings_language_entries">
+        <item>Português</item>
+        <item>Inglês</item>
+
+    </string-array>
+    
+    <string-array name="settings_language_values">
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+    
+    <string-array name="settings_time_format_entries">
+        <item>12:00</item>
+        <item>24:00</item>
+
+    </string-array>
+    
+    <string-array name="settings_time_format_values">
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+    
+    <string-array name="settings_clock_format_entries">
+        <item>Analógico</item>
+        <item>Digital</item>
+
+    </string-array>
+    
+    <string-array name="settings_clock_format_values">
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+    
+    
+</resources>
