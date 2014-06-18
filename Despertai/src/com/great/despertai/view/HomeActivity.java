@@ -20,7 +20,6 @@ public class HomeActivity extends Activity implements OnClickListener {
 	private ImageView alarmListButton, weatherButton, settingsButton;
 	// private DigitalClock digitalClock;
 	SysSUClient client;
-	private Weather weather;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class HomeActivity extends Activity implements OnClickListener {
 		settingsButton.setOnClickListener(this);
 
 		client = new SysSUClient(this);
-
 		// o Loccam precisa de tempo para iniciar
 		// o put é realizado 1segundo após sua inicialização
 		Handler handler = new Handler();
@@ -57,8 +55,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 			public void run() {
 				client.put();
 			}
-		}, 1000);
-
+		}, 500);
 	}
 
 	@Override
@@ -85,15 +82,14 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	private void actionListenerWeatherButton() {
-		client.getCity();
 
-		String textWeather = weather.getAtributo(Weather.DIA) + "\n"
-				+ weather.getAtributo(Weather.TEMPO)
-				+ weather.getAtributo(Weather.CIDADE)
-				+ weather.getAtributo(Weather.MAX_TEMPERATURA)
-				+ weather.getAtributo(Weather.MIN_TEMPERATURA);
-		Toast.makeText(this, textWeather, Toast.LENGTH_LONG).show();
-		weather.speechWeather();
+		client.get();
+		String city = client.getCity();
+		if (city != null) {
+			Weather weather = new Weather(this);
+			weather.execute(city);
+		} else
+			Toast.makeText(this, "Problema na conexão!", Toast.LENGTH_SHORT).show();
 
 	}
 

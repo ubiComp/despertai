@@ -28,6 +28,8 @@ public class SysSUClient {
 	private Context context;
 	private String interesse;
 	private Location location;
+	private List<Address> addresses;
+	private String city;
 
 	public SysSUClient(Context context) {
 
@@ -116,9 +118,13 @@ public class SysSUClient {
 			resultado = (tuples.size() > 0) ? generateString(tuples.get(0))
 					: "tuple.size() == 0";
 
+			// Log.v(TAG, "Resultado get Loccam: " + resultado);
+
 			setLocation(tuples.size() > 0 ? ""
 					+ tuples.get(0).getField(2).getValue() : " ");
-			Log.i("Loccam-Despertai", "Resultado Loccam: " + resultado);
+
+			setCity();
+
 		} catch (RemoteException e) {
 			Log.e("Loccam-Despertai", "Erro ao ler informação");
 			e.printStackTrace();
@@ -138,7 +144,7 @@ public class SysSUClient {
 			r += "(" + tuple.getField(i).getName() + ","
 					+ tuple.getField(i).getValue() + "),\n";
 		}
-		Log.v(TAG, "TupleSize: " + tuple.size());
+		// Log.v(TAG, "TupleSize: " + tuple.size());
 		r = r.substring(0, r.length() - 2) + "\n}";
 		return r;
 	}
@@ -162,42 +168,32 @@ public class SysSUClient {
 		return this.location;
 	}
 
-	public String getCity() {
+	private void setCity() {
 		Geocoder gcd = new Geocoder(context, Locale.ENGLISH);
-		String city = new String();
+		city = new String();
+		// Log.v(TAG,
+		// "Localização: " + location.getLatitude()
+		// + location.getLongitude());
 		try {
-			Log.v(TAG, "Localização: "+location.getLatitude()+ location.getLongitude());
-			List<Address> addresses = gcd.getFromLocation(
-					location.getLatitude(), location.getLongitude(), 1);
+			addresses = gcd.getFromLocation(location.getLatitude(),
+					location.getLongitude(), 1);
 			if (addresses != null) {
-				Log.v(TAG, "Cidade:" + addresses.get(0).toString());
-				// Toast.makeText(context,
-				// "Cidade:" + addresses.get(0).getAddressLine(1),
-				// Toast.LENGTH_LONG).show();
-				// city = addresses.get(0).getAddressLine(1);
-				// Log.v(TAG, "Cidade:" + addresses.get(0).getSubAdminArea());
-				// Toast.makeText(context, "Cidade:"
-				// + addresses.get(0).getSubAdminArea(),
-				// Toast.LENGTH_LONG).show();
-				// city = addresses.get(0).getSubAdminArea();
+				if (addresses.get(0) != null) {
+					city = addresses.get(0).getSubAdminArea();
+					Log.v(TAG, "Cidade:" + city);
+				}
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "Problema para definir a cidade");
-			Toast.makeText(
-					context,
-					"Problema para verificar sua localização. Verifique sua conexão!",
-					Toast.LENGTH_LONG).show();
 			e.printStackTrace();
-			city = "";
-		} catch (IndexOutOfBoundsException e) {
-			Log.e(TAG, "Problema para definir a cidade");
-			Toast.makeText(
-					context,
-					"Problema para verificar sua localização. Verifique sua conexão!",
-					Toast.LENGTH_LONG).show();
-			e.printStackTrace();
-			city = "";
+			city = null;
 		}
+
+	}
+
+	public String getCity() {
+		if(city!=null)
+		Toast.makeText(context, "Cidade:" + city, Toast.LENGTH_LONG).show();
 		return city;
 	}
 
