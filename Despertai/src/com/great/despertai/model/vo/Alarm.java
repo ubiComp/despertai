@@ -1,6 +1,7 @@
 package com.great.despertai.model.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Alarm implements Serializable {
 	
@@ -8,14 +9,15 @@ public class Alarm implements Serializable {
 	protected int id;
 	protected String title;
 	protected String hour;
-	protected String reminderHour;
+//	protected String reminderHour;
 	protected String sound;
 	protected int volume;
 	protected int snoozeTime;
 	protected int shutdownMode;
 	protected boolean isSelected;
-	protected boolean hasReminder;
+//	protected boolean hasReminder;
 	protected boolean hasSnooze;
+	protected List<Integer> daysWeekList;
 	
 	public Alarm(int id, String title, String hour) {
 		this.id = id;
@@ -23,21 +25,24 @@ public class Alarm implements Serializable {
 		this.hour = hour;
 	}
 	
-	public Alarm(int id, String title, String hour, String reminderHour,
+	public Alarm(int id, String title, String hour, /*String reminderHour,*/
 			String sound, int volume, int snoozeTime, int shutdownMode,
-			boolean isSelected, boolean hasReminder, boolean hasSnooze) {
+			boolean isSelected, /*boolean hasReminder,*/ boolean hasSnooze,
+			List<Integer> daysWeekList) {
 		
 		this.id = id;
 		this.title = title;
 		this.hour = hour;
-		this.reminderHour = reminderHour;
+//		this.reminderHour = reminderHour;
 		this.sound = sound;
 		this.volume = volume;
 		this.snoozeTime = snoozeTime;
 		this.shutdownMode = shutdownMode;
 		this.hasSnooze = hasSnooze;
-		this.hasReminder = hasReminder;
+//		this.hasReminder = hasReminder;
 		this.isSelected = isSelected;
+		// inserir lista
+//		this.daysWeekList = daysWeekList;
 		
 	}
 	
@@ -65,13 +70,13 @@ public class Alarm implements Serializable {
 		return this.hour;
 	}
 	
-	public void setReminderHour(String value) {
+	/*public void setReminderHour(String value) {
 		this.reminderHour = value;
 	}
 	
 	public String getReminderHour() {
 		return this.reminderHour;
-	}
+	}*/
 	
 	public void setSound(String value) {
 		this.sound = value;
@@ -113,13 +118,13 @@ public class Alarm implements Serializable {
 		return this.hasSnooze;
 	}
 	
-	public void setReminder(boolean value) {
+	/*public void setReminder(boolean value) {
 		this.hasReminder = value;
 	}
 	
 	public boolean hasReminder() {
 		return this.hasReminder;
-	}
+	}*/
 	
 	public void setSelected(boolean value) {
 		this.isSelected = value;
@@ -128,4 +133,21 @@ public class Alarm implements Serializable {
 	public boolean isSelected() {
 		return this.isSelected;
 	}
+	
+	public void setDaysWeekList(List<Integer> list) {
+		this.daysWeekList = list;
+	}
+	
+	public List<Integer> getDaysWeekList() {
+		return this.daysWeekList;
+	}
+	
+	public String getDaysWeekListStr() { // testar
+		String resultStr = null;
+		for (int i = 0; i < daysWeekList.size(); i++) {
+			resultStr = resultStr + daysWeekList.get(i);
+		}
+		return resultStr;
+	}
+	
 }

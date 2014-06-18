@@ -30,10 +30,11 @@ public class BaseDAO extends SQLiteOpenHelper {
 	protected static final String ALARM_VOLUME = "alarm_vol";
 	protected static final String ALARM_SNOOZETIME = "alarm_snoozetime";
 	protected static final String ALARM_SHUTDMODE = "alarm_shutdmode";
-	protected static final String ALARM_REMINDERHOUR = "alarm_reminderhour";
+//	protected static final String ALARM_REMINDERHOUR = "alarm_reminderhour";
 	protected static final String ALARM_ISSELECTED = "alarm_isselected";
-	protected static final String ALARM_HASREMINDER = "alarm_hasreminder";
+//	protected static final String ALARM_HASREMINDER = "alarm_hasreminder";
 	protected static final String ALARM_HASSNOOZE = "alarm_hassnooze";
+	protected static final String ALARM_DAYSWEEKLIST = "alarm_daysweeklist";
 	
 	@SuppressLint("SdCardPath")
 	public BaseDAO(Context context) {

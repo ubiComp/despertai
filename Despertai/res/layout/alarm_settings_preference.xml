@@ -22,6 +22,8 @@
         <SeekBarPreference
             android:key="@string/alarmsettings_volume_key"
             android:textColor="@color/white"
+            android:max="100"
+            android:defaultValue="50"
             android:title="@string/alarmsettings_volume_option" />
 
         <ListPreference
