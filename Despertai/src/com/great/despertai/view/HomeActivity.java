@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -56,6 +57,9 @@ public class HomeActivity extends Activity implements OnClickListener {
 				client.put();
 			}
 		}, 500);
+		//Chamando o recptor de alarmes
+		Log.i("Weliton", "teste");
+		callReceiver();
 	}
 
 	@Override
@@ -98,5 +102,10 @@ public class HomeActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 
 	}
-
+	//Função para chamar o BroadcastReceiver e ativar os alarmes
+	public void callReceiver(){
+		Intent intent = new Intent("merdadeteste");
+		//Chama o Broadcast
+		sendBroadcast(intent);
+	}
 }

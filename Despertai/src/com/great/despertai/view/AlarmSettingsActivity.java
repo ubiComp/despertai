@@ -180,7 +180,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
 	        mNotificationManager.notify(1, notification);
 	}
 
-	
+
 	public void showNotification2(){
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
