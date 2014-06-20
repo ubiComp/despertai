@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
 
@@ -31,8 +32,8 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 
 	private ListView listview;
 	ListViewAdapter adapter;
-	private ImageButton addAlarmButton;
 	private Switch switchButton;
+	private LinearLayout addAlarmButton;
 	
 	private AlarmDAO dao;
 	
@@ -66,7 +67,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 		listview.setClickable(true);
 		listview.setOnItemClickListener(this);
 		
-		addAlarmButton = (ImageButton) findViewById(R.id.button_add_alarm);
+		addAlarmButton = (LinearLayout) findViewById(R.id.button_add_alarm);
 		addAlarmButton.setOnClickListener(this);
 
 	}

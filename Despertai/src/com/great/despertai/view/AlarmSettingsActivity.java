@@ -181,6 +181,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public void showNotification2(){
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
@@ -197,7 +198,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
         // the next two lines initialize the Notification, using the configurations above
-        Notification notification = new Notification(icon,tickerText,when);
+		Notification notification = new Notification(icon,tickerText,when);
         //notification.when=3000;
 //        notification.defaults |= Notification.DEFAULT_SOUND;
         //notification.defaults |= Notification.DEFAULT_VIBRATE;

@@ -1,37 +1,46 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_itemview"
-    android:orientation='horizontal'
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp" >
-    
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="4dp" >
+
     <TextView
-		android:id='@+id/hour_item'
+        android:id="@+id/hour_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00"
-        android:textSize="36sp"
-        android:textColor="#ffffff" />
-    
-    <TextView
-		android:id='@+id/title_item'
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Teste"
-        android:textSize="22sp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20sp"
+        android:gravity="center"
+        android:lineSpacingExtra="0dp"
+        android:text="@string/alarmlist_hour"
         android:textColor="#ffffff"
-        android:paddingLeft="20dp" />
-    
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/title_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/hour_item"
+        android:layout_alignBottom="@+id/hour_item"
+        android:layout_toRightOf="@+id/hour_item"
+        android:gravity="center"
+        android:text="@string/alarmlist_test"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
     <Switch
         android:id="@+id/switch_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="200dp"
-        android:text=""
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
-    
-</LinearLayout>
+        android:focusableInTouchMode="false"
+        android:textOff="off"
+        android:textOn="on" />
+
+</RelativeLayout>

@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null){
-			convertView = (LinearLayout) inflater.inflate(resourceId, null);
+			convertView = (RelativeLayout) inflater.inflate(resourceId, null);
 		}
 		
 		currentItem = getItem(position);

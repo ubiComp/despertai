@@ -60,7 +60,10 @@
     <string name="settings_temperature_unit_option">Unidade de Temperatura</string>    
     <string name="settings_language_option">Idioma</string>    
     <string name="settings_time_format_option">Formato da Hora</string>    
-    <string name="settings_clock_format_option">Formato do Relógio</string>  
+    <string name="settings_clock_format_option">Formato do Relógio</string>
+    
+    <string name="alarmlist_test">Teste</string>
+    <string name="alarmlist_hour">00:00</string>
 
 </resources>
 
