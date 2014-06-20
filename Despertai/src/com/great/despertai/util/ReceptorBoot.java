@@ -7,10 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
  
 public class ReceptorBoot extends BroadcastReceiver {
  
@@ -24,10 +21,10 @@ public class ReceptorBoot extends BroadcastReceiver {
     
     public static void configurarAlarme(Context contexto) {
     	Log.i("teste", "Chegou ?");
-    	/* Neste método, obtemos o AlarmManager, e obtemos as preferências 
-    	 * do usuário para o alarme (se existirem), 
+    	/* Neste mï¿½todo, obtemos o AlarmManager, e obtemos as preferï¿½ncias 
+    	 * do usuï¿½rio para o alarme (se existirem), 
     	 * e a montamos em um objeto do tipo Calendar. 
-    	 * Caso alarme seja anterior ao horário atual,
+    	 * Caso alarme seja anterior ao horï¿½rio atual,
     	 *  adicionamos um dia a ele e configuramos para 
     	 *  repeti-lo diariamente*/
         AlarmManager gerenciador = (AlarmManager) contexto.getSystemService(Context.ALARM_SERVICE);
@@ -35,8 +32,8 @@ public class ReceptorBoot extends BroadcastReceiver {
         
         
         //Colocar um loop para pegar as horas do banco e setar os eventos
-        cal.set(Calendar.HOUR_OF_DAY, 18);
-        cal.set(Calendar.MINUTE, 50);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 10);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         
@@ -52,7 +49,7 @@ public class ReceptorBoot extends BroadcastReceiver {
     	/*cancelamos o alarme vinculado ao contexto,
     	 *  obtendo o AlarmManager e obtendo um objeto
     	 *   PendingIntent (como se fosse uma tarefa pendente)
-    	 *    com o método obterIntentPendente().*/
+    	 *    com o mï¿½todo obterIntentPendente().*/
         AlarmManager gerenciador = (AlarmManager) contexto.getSystemService(Context.ALARM_SERVICE);
         gerenciador.cancel(obterIntentPendente(contexto));
     } 

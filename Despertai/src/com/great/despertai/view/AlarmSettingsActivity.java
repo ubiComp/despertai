@@ -32,6 +32,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
 	private ToggleButton tbSunday,tbMonday, tbTuesday, tbWednesday, tbThursday, tbFriday, tbSaturday;
 
 	private SharedPreferences preferences;
+	SharedPreferences.Editor editor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +43,16 @@ public class AlarmSettingsActivity extends FragmentActivity {
 		getFragmentManager().beginTransaction()
 				.replace(R.id.content, fragment2).commit();
 
+		currentAlarm = null;
 		currentAlarm = (Alarm) getIntent().getExtras().getSerializable(
 				"currentAlarm");
 		
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//		Preference connectionPref = findPreference(getString(R.string.alarmsettings_name_key));
+		editor = preferences.edit();
 		
+		// instantiate the objects in the layout file
 		tpHour = (TimePicker) findViewById(R.id.alarmsettings_time_picker);
+//		tpHour.setIs24HourView(true);
 		tbSunday = (ToggleButton) findViewById(R.id.alarmsettings_tb_sunday);
 		tbMonday = (ToggleButton) findViewById(R.id.alarmsettings_tb_monday);
 		tbTuesday = (ToggleButton) findViewById(R.id.alarmsettings_tb_tuesday);
@@ -57,13 +61,25 @@ public class AlarmSettingsActivity extends FragmentActivity {
 		tbFriday = (ToggleButton) findViewById(R.id.alarmsettings_tb_friday);
 		tbSaturday = (ToggleButton) findViewById(R.id.alarmsettings_tb_saturday);
 		
+		// set values in the preferences from current alarm (item clicked)
+		editor.putString(getString(R.string.alarmsettings_name_key), currentAlarm.getTitle());
+		editor.putString(getString(R.string.alarmsettings_sound_key), currentAlarm.getSound());
+		editor.putInt(getString(R.string.alarmsettings_volume_key), currentAlarm.getVolume());
+		editor.putString(getString(R.string.alarmsettings_snooze_key), ""+currentAlarm.getSnoozeTime());
+		editor.putString(getString(R.string.alarmsettings_shutdown_mode_key), ""+currentAlarm.getShutdownMode());
+		editor.commit();
 		
-//		notification.sound =Uri.parse("content://media/internal/audio/media/43");
-//		showNotification();
-		showNotification2();
-
-//		String testestr = "abcdef";
-//		char testechar = testestr.charAt(0);
+//		tpHour.setCurrentHour(currentAlarm.getHours()); // tratar string de horas
+//		tpHour.setCurrentMinute(currentAlarm.getMinutes());
+		
+		// tratar daysweeklist
+//		tbSunday.setChecked(currentAlarm.getDaysWeekList().get(0)==1 ? true : false);
+//		tbMonday.setChecked(currentAlarm.getDaysWeekList().get(1)==1 ? true : false);
+//		tbTuesday.setChecked(currentAlarm.getDaysWeekList().get(2)==1 ? true : false);
+//		tbWednesday.setChecked(currentAlarm.getDaysWeekList().get(3)==1 ? true : false);
+//		tbThursday.setChecked(currentAlarm.getDaysWeekList().get(4)==1 ? true : false);
+//		tbFriday.setChecked(currentAlarm.getDaysWeekList().get(5)==1 ? true : false);
+//		tbSaturday.setChecked(currentAlarm.getDaysWeekList().get(6)==1 ? true : false);
 		
 	}
 
@@ -93,8 +109,8 @@ public class AlarmSettingsActivity extends FragmentActivity {
 
 	private void actionListenerSaveButton() {
 		Log.d("BUTTON", "SaveButton clicked");
-		// obter dados dos componentes e inserir em currentAlarm
 		
+		// set data in the current alarm from objects layout preferences
 		Log.d("TESTE-nome", preferences.getString(getString(R.string.alarmsettings_name_key), ""));
 		Log.d("TESTE-hora", ""+Integer.toString(tpHour.getCurrentHour())+":"+Integer.toString(tpHour.getCurrentMinute()));
 		Log.d("TESTE-som", ""+preferences.getString(getString(R.string.alarmsettings_sound_key), ""));
@@ -107,7 +123,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
 		Log.d("TESTE-wedn", ""+tbWednesday.isChecked());
 		Log.d("TESTE-thursday", ""+tbThursday.isChecked());
 		Log.d("TESTE-friday", ""+tbFriday.isChecked());
-		Log.d("TESTE-saturday", ""+tbSaturday.isChecked());
+		Log.d("TESTE-saturday", ""+tbSaturday.isChecked()); // remover
 		
 		List<Integer>list = new ArrayList<Integer>();
 		list.add( tbSunday.isChecked() ? 1 : 0 );
@@ -125,7 +141,7 @@ public class AlarmSettingsActivity extends FragmentActivity {
 		currentAlarm.setTitle(preferences.getString(getString(R.string.alarmsettings_name_key), ""));
 		currentAlarm.setHour(Integer.toString(tpHour.getCurrentHour())+":"+Integer.toString(tpHour.getCurrentMinute()));
 		currentAlarm.setSound(preferences.getString(getString(R.string.alarmsettings_sound_key), ""));
-		currentAlarm.setVolume(0);
+		currentAlarm.setVolume(preferences.getInt(getString(R.string.alarmsettings_volume_key), 0));
 		currentAlarm.setSnoozeTime(Integer.parseInt(preferences.getString(getString(R.string.alarmsettings_snooze_key), "0")));
 		currentAlarm.setShutdownMode(Integer.parseInt(preferences.getString(getString(R.string.alarmsettings_shutdown_mode_key), "0")));
 		currentAlarm.setDaysWeekList(list);

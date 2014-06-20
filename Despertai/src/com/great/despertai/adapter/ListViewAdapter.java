@@ -3,6 +3,7 @@ package com.great.despertai.adapter;
 import java.util.List;
 
 import com.great.despertai.R;
+import com.great.despertai.model.dao.AlarmDAO;
 import com.great.despertai.model.vo.Alarm;
 
 import android.content.Context;
@@ -28,6 +29,8 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 	
 	private Alarm currentItem;
 	
+	private AlarmDAO dao = new AlarmDAO(getContext()); // ver
+	
 	public ListViewAdapter(Context context, int resource, List<Alarm> objects) {
 		super(context, resource, objects);
 		this.resourceId = resource;
@@ -47,7 +50,7 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 		TextView textview_title = (TextView) convertView.findViewById(R.id.title_item);
 		final Switch switchButton = (Switch) convertView.findViewById(R.id.switch_item);
 		
-		textview_hour.setText(currentItem.getHour());
+		textview_hour.setText(currentItem.getHourStr());
 		textview_title.setText(currentItem.getTitle());
 		switchButton.setChecked(currentItem.isSelected());
 		switchButton.setTag(position);
@@ -67,8 +70,12 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 		
 			if (isChecked) {
 				currentItem.setSelected(true);
+				dao.update(currentItem);
+				Log.d("SWITCHBUTTON", "alarme ativado");
 			} else {
 				currentItem.setSelected(false);
+				dao.update(currentItem); // ok
+				Log.d("SWITCHBUTTON", "alarme desativado");
 			}
 		}
 		

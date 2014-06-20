@@ -1,11 +1,10 @@
 package com.great.despertai.util;
 
-import com.great.despertai.view.AlarmSettingsActivity;
-import com.great.despertai.view.AlarmeActivity;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.great.despertai.view.AlarmeActivity;
  
 public class ReceptorAlarme extends BroadcastReceiver {
  

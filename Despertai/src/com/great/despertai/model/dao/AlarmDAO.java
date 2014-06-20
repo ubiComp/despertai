@@ -25,9 +25,7 @@ public class AlarmDAO {
 		BaseDAO.ALARM_VOLUME,
 		BaseDAO.ALARM_SNOOZETIME,
 		BaseDAO.ALARM_SHUTDMODE,
-//		BaseDAO.ALARM_REMINDERHOUR,
 		BaseDAO.ALARM_ISSELECTED,
-//		BaseDAO.ALARM_HASREMINDER,
 		BaseDAO.ALARM_HASSNOOZE,
 		BaseDAO.ALARM_DAYSWEEKLIST
 	};
@@ -47,15 +45,14 @@ public class AlarmDAO {
 	
 	public void insert(Alarm alarm) {
 		ContentValues values = new ContentValues();
+		values.put(BaseDAO.ALARM_ID, alarm.getId());
 		values.put(BaseDAO.ALARM_TITLE, alarm.getTitle());
-		values.put(BaseDAO.ALARM_HOUR, alarm.getHour());
-//		values.put(BaseDAO.ALARM_REMINDERHOUR, alarm.getReminderHour());
+		values.put(BaseDAO.ALARM_HOUR, alarm.getHourStr());
 		values.put(BaseDAO.ALARM_SOUND, alarm.getSound());
 		values.put(BaseDAO.ALARM_VOLUME, alarm.getVolume());
 		values.put(BaseDAO.ALARM_SNOOZETIME, alarm.getSnoozeTime());
 		values.put(BaseDAO.ALARM_SHUTDMODE, alarm.getShutdownMode());
 		values.put(BaseDAO.ALARM_ISSELECTED, alarm.isSelected() ? 1 : 0);
-//		values.put(BaseDAO.ALARM_HASREMINDER, alarm.hasReminder() ? 1 : 0);
 		values.put(BaseDAO.ALARM_HASSNOOZE, alarm.hasSnooze() ? 1 : 0);
 		values.put(BaseDAO.ALARM_DAYSWEEKLIST, alarm.getDaysWeekListStr());
 		
@@ -138,6 +135,9 @@ public class AlarmDAO {
 				
 				Log.d("TESTE-STR-days", daysWeekStr);
 				
+				Log.d("TESTE-STR-days", "daysWeekStr.length "+daysWeekStr.length());
+				
+				
 				if (daysWeekList.equals("null")){
 					Log.d("TESTE-STR-dentro", "str eh diferente de null");
 					for (int i = 0; i < daysWeekStr.length(); i++) {
@@ -153,13 +153,11 @@ public class AlarmDAO {
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_ID)),
 						c.getString(c.getColumnIndex(BaseDAO.ALARM_TITLE)),
 						c.getString(c.getColumnIndex(BaseDAO.ALARM_HOUR)),
-						/*c.getString(c.getColumnIndex(BaseDAO.ALARM_REMINDERHOUR)),*/
 						c.getString(c.getColumnIndex(BaseDAO.ALARM_SOUND)),
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_VOLUME)),
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_SNOOZETIME)),
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_SHUTDMODE)),
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_ISSELECTED)) == 1 ? true : false,
-						/*c.getInt(c.getColumnIndex(BaseDAO.ALARM_HASREMINDER)) == 1 ? true : false,*/
 						c.getInt(c.getColumnIndex(BaseDAO.ALARM_HASSNOOZE)) == 1 ? true : false,
 						daysWeekList);
 				
@@ -180,14 +178,12 @@ public class AlarmDAO {
 		
 		ContentValues values = new ContentValues();
 		values.put(BaseDAO.ALARM_TITLE, alarm.getTitle());
-		values.put(BaseDAO.ALARM_HOUR, alarm.getHour());
-//		values.put(BaseDAO.ALARM_REMINDERHOUR, alarm.getReminderHour());
+		values.put(BaseDAO.ALARM_HOUR, alarm.getHourStr());
 		values.put(BaseDAO.ALARM_SOUND, alarm.getSound());
 		values.put(BaseDAO.ALARM_VOLUME, alarm.getVolume());
 		values.put(BaseDAO.ALARM_SNOOZETIME, alarm.getSnoozeTime());
 		values.put(BaseDAO.ALARM_SHUTDMODE, alarm.getShutdownMode());
 		values.put(BaseDAO.ALARM_ISSELECTED, alarm.isSelected());
-//		values.put(BaseDAO.ALARM_HASREMINDER, alarm.hasReminder());
 		values.put(BaseDAO.ALARM_HASSNOOZE, alarm.hasSnooze());
 		
 		open();
@@ -197,6 +193,7 @@ public class AlarmDAO {
 		close();
 		
 		Log.i(BaseDAO.DB_LOG, "[" + count + "] records have been updated.");
+		Log.i(BaseDAO.DB_LOG, "[" + alarm.getId() + "] record was updated.");
 	}
 	
 	public void delete(Alarm alarm) {

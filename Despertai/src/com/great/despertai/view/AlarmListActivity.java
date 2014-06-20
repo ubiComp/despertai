@@ -32,7 +32,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 
 	private ListView listview;
 	ListViewAdapter adapter;
-	private Switch switchButton;
 	private LinearLayout addAlarmButton;
 	
 	private AlarmDAO dao;
@@ -47,10 +46,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 		setContentView(R.layout.alarm_list_layout);
 		
 		isNewAlarmOption = false;
@@ -60,6 +55,8 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 		
 		alarmList = dao.searchAlarmList();
 		alarmIdCount = dao.getBiggestAlarmId();
+		
+		Log.d("ALARM", "alarmidcount "+ alarmIdCount); // remover
 		
 		adapter = new ListViewAdapter(this, R.layout.list_item, alarmList);
 		listview.setAdapter(adapter);
@@ -88,7 +85,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	
 	private void actionListenerAddAlarmButton() {
 		isNewAlarmOption = true;
-		alarmToConfigure = new Alarm(alarmIdCount + 1, "Default", "00:00");
+		alarmToConfigure = new Alarm(alarmIdCount + 1, "Alarme");
 		configureAlarm(alarmToConfigure);
 	}
 	
@@ -149,7 +146,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 			isNewAlarmOption = false;
 		}
 		else {
-			alarm.setTitle("Modified!");
 			dao.update(alarm);
 			alarmList.set(alarmPosition, alarm);
 		}
