@@ -64,6 +64,9 @@
     
     <string name="alarmlist_test">Teste</string>
     <string name="alarmlist_hour">00:00</string>
+    
+    <!-- Alarm Screen -->
+    <string name="alarm_stop_button">Parar</string>
 
 </resources>
 

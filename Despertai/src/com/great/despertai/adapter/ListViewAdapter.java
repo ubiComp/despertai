@@ -1,12 +1,11 @@
 package com.great.despertai.adapter;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.great.despertai.R;
-import com.great.despertai.model.dao.AlarmDAO;
-import com.great.despertai.model.vo.Alarm;
-
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.great.despertai.R;
+import com.great.despertai.model.dao.AlarmDAO;
+import com.great.despertai.model.vo.Alarm;
+import com.great.despertai.view.AlarmListActivity;
+import com.great.despertai.view.AlarmSettingsActivity;
 
 @SuppressWarnings("unused")
 public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedChangeListener{
@@ -29,7 +32,7 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 	
 	private Alarm currentItem;
 	
-	private AlarmDAO dao = new AlarmDAO(getContext()); // ver
+	private AlarmDAO dao = new AlarmDAO(getContext());
 	
 	public ListViewAdapter(Context context, int resource, List<Alarm> objects) {
 		super(context, resource, objects);
@@ -69,17 +72,29 @@ public class ListViewAdapter extends ArrayAdapter<Alarm> implements OnCheckedCha
 			Alarm currentItem = getItem(position);
 		
 			if (isChecked) {
+				Log.i("Switch Button", "Alarm activated.");
 				currentItem.setSelected(true);
 				dao.update(currentItem);
-				Log.d("SWITCHBUTTON", "alarme ativado");
+				callReceiver(currentItem);
+				
 			} else {
+				Log.i("Switch Button", "Alarm disabled.");
 				currentItem.setSelected(false);
-				dao.update(currentItem); // ok
-				Log.d("SWITCHBUTTON", "alarme desativado");
+				dao.update(currentItem);
 			}
 		}
 		
 		currentItem = null;
+	}
+	
+	public void callReceiver(Alarm alarm) {
+		Intent intent = new Intent("sendAlarmToReceiver");
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("alarmToReceiver", (Serializable) alarm);
+		intent.putExtras(bundle);
+
+		// Calls the Broadcast Receiver
+		getContext().sendBroadcast(intent);
 	}
 	
 }

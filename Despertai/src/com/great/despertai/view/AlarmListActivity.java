@@ -56,8 +56,6 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 		alarmList = dao.searchAlarmList();
 		alarmIdCount = dao.getBiggestAlarmId();
 		
-		Log.d("ALARM", "alarmidcount "+ alarmIdCount); // remover
-		
 		adapter = new ListViewAdapter(this, R.layout.list_item, alarmList);
 		listview.setAdapter(adapter);
 		listview.setBackgroundColor(Color.TRANSPARENT);
@@ -85,7 +83,7 @@ public class AlarmListActivity extends Activity implements OnClickListener, OnIt
 	
 	private void actionListenerAddAlarmButton() {
 		isNewAlarmOption = true;
-		alarmToConfigure = new Alarm(alarmIdCount + 1, "Alarme");
+		alarmToConfigure = new Alarm(alarmIdCount + 1, "Alarme", "00:00");
 		configureAlarm(alarmToConfigure);
 	}
 	

@@ -19,7 +19,7 @@
     <receiver android:name="com.great.despertai.util.ReceptorBoot" android:enabled="true" android:exported="true"
     android:label="ReceptorBoot">
 	<intent-filter>
-	<action android:name="merdadeteste"/>
+	<action android:name="sendAlarmToReceiver"/>
 	<category android:name="android.intent.category.HOME"/>
 	</intent-filter>
 	</receiver>

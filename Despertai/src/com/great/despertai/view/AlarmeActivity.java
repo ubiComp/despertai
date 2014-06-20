@@ -1,52 +1,80 @@
 package com.great.despertai.view;
 
 
-import com.great.despertai.R;
-
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.great.despertai.R;
+import com.great.despertai.model.vo.Alarm;
  
-public class AlarmeActivity extends Activity {
+public class AlarmeActivity extends Activity implements OnClickListener {
  
+	private Alarm alarm;
+	
+	private TextView tvTitle, tvHour;
+	private Button btStop;
+	
+	private Notification notification;
+	private NotificationManager mNotificationManager;
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarm);
-       // showNotification2();
+        setContentView(R.layout.alarm_layout);
+        
+        alarm = (Alarm) getIntent().getExtras().getSerializable(
+				"alarmToSound");
+        
+        tvTitle = (TextView) findViewById(R.id.alarm_tv_title);
+        tvHour = (TextView) findViewById(R.id.alarm_tv_hour);
+        btStop = (Button) findViewById(R.id.alarm_bt_stop);
+        btStop.setOnClickListener(this);
+        
+        tvTitle.setText(alarm.getTitle());
+        tvHour.setText(alarm.getHourStr());
+        
+        showNotification();
+        
+        alarm = null;
     }
     
-    
-	public void showNotification2(){
+	public void showNotification(){
         String ns = Context.NOTIFICATION_SERVICE;
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+        mNotificationManager = (NotificationManager) getSystemService(ns);
 
-       int icon = R.drawable.ic_launcher_clock;        // icon from resources
-        CharSequence tickerText = "Alarme"; //
-        long when = System.currentTimeMillis();         // notification time
-        Context context = getApplicationContext();      // application Context
-        CharSequence contentTitle = "Despertaí";  // message title
-        CharSequence contentText = "Acorda!!";      // message text
+        notification = new Notification();
+        notification.sound = Uri.parse(alarm.getSound());
 
-        Intent notificationIntent = new Intent(this, AlarmSettingsActivity.class);
-//        Intent notificationIntent = new Intent();
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        // the next two lines initialize the Notification, using the configurations above
-        Notification notification = new Notification(icon,tickerText,when);
-        //notification.when=3000;
-//        notification.defaults |= Notification.DEFAULT_SOUND;
-        //notification.defaults |= Notification.DEFAULT_VIBRATE;
-        //notification.sound = Uri.parse("android.resource://" + getPackageName() + "/R.raw.notificationsound");
-        
-        notification.sound = Uri.parse("content://media/internal/audio/media/43");
-        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
         mNotificationManager.notify(1, notification);
-        
 }
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.alarm_bt_stop:
+			actionListenerStopButton();
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+
+	private void actionListenerStopButton() {
+		Log.d("BUTTON", "Stop button selected.");
+		mNotificationManager.cancel(1);
+		finish();
+	}
+    
 }

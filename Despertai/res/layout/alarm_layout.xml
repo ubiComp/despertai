@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_background"
+    android:orientation="vertical"
+    android:weightSum="10" >
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2.0" />
+    
+    <TextView
+        android:id="@+id/alarm_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:text="teste"
+        android:textSize="42sp"
+        android:layout_weight="1.5" />
+
+    <TextView
+        android:id="@+id/alarm_tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:text="teste"
+        android:textSize="72sp"
+        android:layout_weight="3.5" />
+
+    <Button
+        android:id="@+id/alarm_bt_stop"
+        android:layout_width="250sp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1.2"
+        android:text="@string/alarm_stop_button"
+        android:textSize="28sp" />
+
+</LinearLayout>

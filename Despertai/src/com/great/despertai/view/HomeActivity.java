@@ -59,7 +59,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		}, 500);
 		//Chamando o recptor de alarmes
 		Log.i("Weliton", "teste");
-		callReceiver();
+//		callReceiver();
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 
 	}
-	//Função para chamar o BroadcastReceiver e ativar os alarmes
+	//Funï¿½ï¿½o para chamar o BroadcastReceiver e ativar os alarmes
 	public void callReceiver(){
 		Intent intent = new Intent("merdadeteste");
 		//Chama o Broadcast
