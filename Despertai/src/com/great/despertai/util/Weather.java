@@ -8,13 +8,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.Set;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
+
+import com.great.despertai.R;
 
 public class Weather extends AsyncTask<String, Void, Boolean> implements
 		OnInitListener {
@@ -33,10 +40,13 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 	static final public String US = "en_US";
 	static final public String ID = "<id>";
 	private String textWeather;
+	SharedPreferences prefs = null;
+	Context context;
 
 	private TextToSpeech tts;
 
 	public Weather(Context context) {
+		this.context = context;
 		tts = new TextToSpeech(context, this);
 	}
 
@@ -59,7 +69,7 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 		return null;
 	}
 
-	public String getAtributo(String baseXml, String req) {
+	private String getAtributo(String baseXml, String req) {
 		try {
 			int initIndex = baseXml.indexOf(req) + req.length();
 			int endIndex = baseXml.indexOf(req.replace("<", "</"));
@@ -79,22 +89,13 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 		return textWeather;
 	}
 
-	public String textWeather() {
-
-		String text = "Good morning. At" + getAtributo(Weather.CIDADE)
-				+ " The Weather Forecast for tomorrow is:"
-				+ getAtributo(Weather.TEMPO) + ". Have a nice day!";
-
-		// Log.v(TAG, "textWeather: " + textWeather);
-		// speech = new Speech(context, textWeather);
-		// speech.speakOut(textWeather);
-
-		return text;
-	}
-
 	@Override
 	protected Boolean doInBackground(String... params) {
 		boolean ok;
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs.registerOnSharedPreferenceChangeListener(prefListener);
+
 		String xml, code;
 		if (params.length > 0) {
 			// requisitando o código da cidade
@@ -108,16 +109,7 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 					+ "/previsao.xml");
 			baseXml = xml;
 			// Log.v(TAG, "Previsão enfim: " + xml);
-			if (Locale.getDefault() == Locale.US)
-				textWeather = "Good morning at" + getAtributo(Weather.CIDADE)
-						+ ". The Weather Forecast for tomorrow is:"
-						+ getAtributo(Weather.TEMPO) + ". Have a nice day!";
-			else if (Locale.getDefault().toString().equals(BR))
-				textWeather = "Bom dia em " + getAtributo(Weather.CIDADE)
-						+ ". A previsão do tempo para amanhã é:"
-						+ getAtributo(Weather.TEMPO) + ". Tenha um bom dia!";
-			Log.v(TAG, "Língua do dispositivo: "
-					+ Locale.getDefault().toString());
+			setTextWeather();
 
 			speakOut(textWeather);
 
@@ -177,8 +169,12 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 		}
 	}
 
-	public void speakOut(String text) {
-		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	public void speakOut(final String text) {
+		try {
+			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private String parseWeather(String tempo, String language) {
@@ -190,6 +186,8 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 			} else if (tempo.equals("ci")) {
 				weather = "Chuvas Isoladas";
 			} else if (tempo.equals("c")) {
+				prefs = PreferenceManager.getDefaultSharedPreferences(context);
+				prefs.registerOnSharedPreferenceChangeListener(prefListener);
 				weather = "Chuva";
 			} else if (tempo.equals("in")) {
 				weather = "Instável";
@@ -353,5 +351,111 @@ public class Weather extends AsyncTask<String, Void, Boolean> implements
 
 		return weather;
 	}
+
+	private void setTextWeather() {
+
+		Set<String> selections = prefs.getStringSet(context.getResources()
+				.getString(R.string.settings_forecast), null);
+		String[] selected = selections.toArray(new String[] {});
+
+		// english = 2 is default
+		String language = prefs.getString(
+				context.getResources().getString(R.string.settings_language),
+				"2");
+
+		textWeather = period(language);
+
+		// if English
+		// if (Locale.getDefault() == Locale.US)
+		if (language.equals("2")) {
+			textWeather = textWeather + ". At " + getAtributo(Weather.CIDADE);
+			if (lookForString(selected, "data"))
+				textWeather = textWeather + ". Today is "
+						+ getAtributo(Weather.DIA).substring(8) + ".";
+			if (lookForString(selected, "clima"))
+				textWeather = textWeather
+						+ "The forecast weather for tomorrow is "
+						+ getAtributo(Weather.TEMPO) + ".";
+			if (lookForString(selected, "tmax"))
+				textWeather = textWeather + "The maximum temperature will be"
+						+ getAtributo(Weather.MAX_TEMPERATURA) + ".";
+			if (lookForString(selected, "tmin"))
+				textWeather = textWeather + "The minimum temperature will be"
+						+ getAtributo(Weather.MIN_TEMPERATURA) + ".";
+			if (lookForString(selected, "iuv"))
+				textWeather = textWeather + "Ultraviolet radiation will be "
+						+ getAtributo(Weather.RADIACAO_UV) + ".";
+
+			textWeather = textWeather + "Have a nice day!";
+		}
+
+		// if Portuguese
+		// else if (Locale.getDefault().toString().equals(BR))
+
+		if (language.equals("1")) {
+			textWeather = textWeather + ". Em " + getAtributo(Weather.CIDADE);
+			if (lookForString(selected, "data"))
+				textWeather = textWeather + ". Hoje é "
+						+ getAtributo(Weather.DIA).substring(8) + ".";
+			if (lookForString(selected, "clima"))
+				textWeather = textWeather + " O clima previsto para amanhã é "
+						+ getAtributo(Weather.TEMPO) + ".";
+			if (lookForString(selected, "tmax"))
+				textWeather = textWeather + " A temperatura máxima será "
+						+ getAtributo(Weather.MAX_TEMPERATURA) + ".";
+			if (lookForString(selected, "tmin"))
+				textWeather = textWeather + " A temperatura mínima será "
+						+ getAtributo(Weather.MIN_TEMPERATURA) + ".";
+			if (lookForString(selected, "iuv"))
+				textWeather = textWeather + " A radiação ultravioleta será "
+						+ getAtributo(Weather.RADIACAO_UV) + ".";
+
+			textWeather = textWeather + "Tenha um bom dia!";
+
+		}
+
+		Log.v(TAG, textWeather);
+	}
+
+	private boolean lookForString(String[] selections, String s) {
+		for (int i = 0; i < selections.length; i++) {
+			if (selections[i].equals(s))
+				return true;
+		}
+		return false;
+	}
+
+	@SuppressWarnings("deprecation")
+	private String period(String language) {
+		Calendar c = Calendar.getInstance();
+
+		if (language.equals("1")) {
+			if (c.getTime().getHours() > 3 && c.getTime().getHours() < 12)
+				return "Bom dia";
+			else if (c.getTime().getHours() > 12 && c.getTime().getHours() < 18)
+				return "Boa tarde";
+			else
+				return "Boa noite";
+		} else {
+			if (c.getTime().getHours() > 3 && c.getTime().getHours() < 12)
+				return "Good Morning";
+			else if (c.getTime().getHours() > 12 && c.getTime().getHours() < 18)
+				return "Good Afternoon";
+			else
+				return "Good Evening";
+		}
+
+	}
+
+	private OnSharedPreferenceChangeListener prefListener = new OnSharedPreferenceChangeListener() {
+		
+		public void onSharedPreferenceChanged(
+				SharedPreferences sharedPreferences, String key) {
+			if (key.equals(context.getResources().getString(R.string.settings_forecast))) {
+				setTextWeather();
+				Log.v("Alarm-Despertai", "Mudaram as opções de previsão.");
+			}
+		}
+	};
 
 }

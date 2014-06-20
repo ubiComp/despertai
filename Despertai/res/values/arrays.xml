@@ -32,6 +32,22 @@
     </string-array>
 
     
+   <string-array name="settings_forecast_entries">
+        <item>Data</item>
+        <item>Clima/tempo</item>
+        <item>Temperatura máxima</item>
+        <item>Temperatura mínima</item>
+        <item>Radiação Ultravioleta</item>
+   </string-array>
+   
+  <string-array name="settings_forecast_values">
+        <item>data</item>
+        <item>clima</item>
+        <item>tmax</item>
+        <item>tmin</item>
+        <item>iuv</item>
+   </string-array>
+    
    <string-array name="settings_time_zone_entries">
         <item>Fernando de Noronha</item>
         <item>Brasília</item>
@@ -41,10 +57,10 @@
     </string-array>
     
     <string-array name="settings_time_zone_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>GMT-0200</item>
+        <item>GMT-0300</item>
+        <item>GMT-0400</item>
+        <item>GMT-0500</item>
        
     </string-array>
     
