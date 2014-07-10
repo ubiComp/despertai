@@ -21,7 +21,6 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="3.5"
-        android:format12Hour="kk:mm"
         android:format24Hour="kk:mm"
         android:gravity="bottom"
         android:textColor="#ffffff"

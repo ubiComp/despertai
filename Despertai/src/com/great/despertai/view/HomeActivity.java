@@ -150,10 +150,10 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		public void onSharedPreferenceChanged(
 				SharedPreferences sharedPreferences, String key) {
-			if (key.equals(R.string.settings_time_zone)) {
+			if (key.equals(getResources().getString(R.string.settings_time_zone))) {
 				setTimeZone();
 			}
-			if (key.equals(R.string.settings_time_format)) {
+			if (key.equals(getResources().getString(R.string.settings_time_format))) {
 				setFormatTime();
 			}
 		}
